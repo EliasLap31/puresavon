@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureSavon — Le savon qui ne finit jamais en poubelle</title>
+  <meta name="description" content="Un distributeur élégant, rechargeable à vie. Des capsules concentrées livrées chaque mois. 90% de plastique en moins." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #085041;
+      --green-mid: #0F6E56;
+      --green-light: #1D9E75;
+      --green-pale: #E1F5EE;
+      --green-border: #9FE1CB;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --text-hint: #9ca3af;
+      --bg: #ffffff;
+      --bg-soft: #f9fafb;
+      --border: rgba(0,0,0,0.1);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: var(--green-mid);
+      color: var(--green-pale);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      background: var(--green-pale);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 1.75rem;
+      border: 1px solid var(--green-border);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green-light);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* PRODUCT ILLUSTRATION */
+    .product-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto 3rem;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 680px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    .stat {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--green-mid);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* BENEFITS */
+    .benefits-section {
+      background: var(--bg-soft);
+      padding: 5rem 1.5rem;
+    }
+
+    .benefits-inner { max-width: 760px; margin: 0 auto; }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .benefit-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-icon svg { width: 20px; height: 20px; }
+
+    .benefit-card h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .benefit-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      padding: 5rem 1.5rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 1.25rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      color: var(--green-pale);
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* PRICING */
+    .pricing-section {
+      background: var(--bg-soft);
+      padding: 5rem 1.5rem;
+    }
+
+    .pricing-inner { max-width: 560px; margin: 0 auto; text-align: center; }
+
+    .pricing-card {
+      background: var(--bg);
+      border: 2px solid var(--green-border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .founder-badge {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-mid);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--green-border);
+    }
+
+    .pricing-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-card .sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .price-main {
+      font-size: 3rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      margin-top: 6px;
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--green-mid);
+      color: var(--green-pale);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .cta-btn:hover { background: var(--green-dark); }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--text-hint);
+    }
+
+    /* EMAIL CAPTURE */
+    .email-section {
+      padding: 5rem 1.5rem;
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .email-section p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .email-input {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-soft);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-input:focus { border-color: var(--green-light); }
+
+    .email-btn {
+      padding: 12px 22px;
+      background: var(--green-mid);
+      color: var(--green-pale);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .email-btn:hover { background: var(--green-dark); }
+
+    .success-msg {
+      display: none;
+      font-size: 14px;
+      color: var(--green-mid);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-hint);
+    }
+
+    footer a { color: var(--green-mid); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 520px) {
+      .stats { grid-template-columns: 1fr; }
+      .email-form { flex-direction: column; }
+      .email-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">PureSavon</a>
+    <a href="#precommande" class="nav-cta">Je précommande</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">Bientôt disponible</div>
+    <h1>Le savon qui ne<br>finit <em>jamais</em> en poubelle</h1>
+    <p>Un distributeur élégant, rechargeable à vie. Des capsules concentrées livrées chaque mois. 90% de plastique en moins.</p>
+
+    <!-- Product illustration -->
+    <div class="product-wrap">
+      <svg width="160" height="220" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="50" y="60" width="60" height="145" rx="30" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="2"/>
+        <rect x="73" y="12" width="14" height="55" rx="7" fill="#0F6E56"/>
+        <rect x="62" y="50" width="36" height="12" rx="6" fill="#0F6E56"/>
+        <text x="80" y="128" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#085041" font-weight="500">PURE</text>
+        <text x="80" y="143" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#085041" font-weight="500">SAVON</text>
+        <line x1="65" y1="165" x2="95" y2="165" stroke="#9FE1CB" stroke-width="1"/>
+        <circle cx="55" cy="210" r="11" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="1.5"/>
+        <circle cx="80" cy="210" r="11" fill="#5DCAA5" stroke="#1D9E75" stroke-width="1.5"/>
+        <circle cx="105" cy="210" r="11" fill="#1D9E75" stroke="#0F6E56" stroke-width="1.5"/>
+        <text x="55" y="214" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#085041">1</text>
+        <text x="80" y="214" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#fff">2</text>
+        <text x="105" y="214" text-anchor="middle" font-family="DM Sans" font-size="8" fill="#fff">3</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">−90%</span>
+      <span class="stat-label">de plastique par an</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">−50%</span>
+      <span class="stat-label">de coût sur 2 ans</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1 min</span>
+      <span class="stat-label">pour recharger</span>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <section class="benefits-section">
+    <div class="benefits-inner">
+      <h2 class="section-title">Pourquoi PureSavon ?</h2>
+      <div class="benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="8" stroke="#0F6E56" stroke-width="1.5"/>
+              <path d="M6.5 10.5l2.5 2.5 5-5" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Design premium</h3>
+          <p>Fabriqué pour durer et embellir votre intérieur. C'est le dernier flacon que vous achetez.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 20 20" fill="none">
+              <path d="M10 3v14M6 7l4-4 4 4" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Concentré x10</h3>
+          <p>Une capsule = un mois de savon pour toute la famille. Aussi puissant qu'un flacon entier.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 20 20" fill="none">
+              <path d="M10 17s-7-5-7-10a7 7 0 0114 0c0 5-7 10-7 10z" stroke="#0F6E56" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3>Formule naturelle</h3>
+          <p>Certifiée Ecocert, sans perturbateurs endocriniens. Douce pour la peau et la planète.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="3" width="14" height="14" rx="3" stroke="#0F6E56" stroke-width="1.5"/>
+              <path d="M7 10h6M10 7v6" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Livraison automatique</h3>
+          <p>Chaque mois, sans y penser, dans un sachet recyclable slim qui passe dans votre boîte aux lettres.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <h2 class="section-title">Comment ça marche</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Vous recevez le distributeur</h3>
+          <p>Élégant, durable, posé en deux secondes sur votre lavabo. C'est le dernier flacon que vous achetez.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Chaque mois, une capsule arrive</h3>
+          <p>Dans une enveloppe slim recyclable. Vous l'insérez et ajoutez de l'eau. C'est tout.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Vous oubliez le problème</h3>
+          <p>Plus jamais de flacon vide à racheter, de plastique à trier, ni de rupture de stock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="precommande">
+    <div class="pricing-inner">
+      <h2 class="section-title">Rejoignez les fondateurs</h2>
+      <div class="pricing-card">
+        <div class="founder-badge">Tarif fondateur — places limitées</div>
+        <h3>Kit de démarrage complet</h3>
+        <p class="sub">Distributeur premium + première recharge offerte</p>
+        <div class="price-main">45 €</div>
+        <p class="price-period">puis 10 €/mois pour les recharges · Sans engagement</p>
+        <a href="#liste-attente" class="cta-btn">Je précommande maintenant</a>
+        <p class="cta-note">Livraison estimée automne 2025 · Annulation gratuite avant expédition</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="email-section" id="liste-attente">
+    <h2 class="section-title">Rejoignez la liste d'attente</h2>
+    <p>Soyez prévenu en premier dès l'ouverture des précommandes.<br>Aucun spam, promis.</p>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="votre@email.fr" id="email-input" />
+      <button class="email-btn" onclick="handleEmail()">Je m'inscris</button>
+    </div>
+    <p class="success-msg" id="success-msg">Parfait, vous êtes sur la liste ! On vous contacte très vite.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 PureSavon · Made in France · <a href="mailto:hello@puresavon.fr">hello@puresavon.fr</a></p>
+    <p style="margin-top:6px;">Mentions légales · Politique de confidentialité</p>
+  </footer>
+
+  <script>
+    function handleEmail() {
+      const input = document.getElementById('email-input');
+      const msg = document.getElementById('success-msg');
+      const val = input.value.trim();
+      if (!val || !val.includes('@') || !val.includes('.')) {
+        input.style.borderColor = '#E24B4A';
+        input.focus();
+        return;
+      }
+      input.style.borderColor = '#1D9E75';
+      input.disabled = true;
+      document.querySelector('.email-btn').disabled = true;
+      document.querySelector('.email-btn').style.opacity = '0.5';
+      msg.style.display = 'block';
+      // Pour connecter à Brevo : remplacer par un fetch() vers leur API
+      console.log('Email inscrit :', val);
+    }
+
+    // Smooth scroll pour les liens internes
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
